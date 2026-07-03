@@ -5,12 +5,16 @@ and adds commands to run the tests and view the HTML report.
 
 ## Install
 
-From the project root:
+From the target project's root:
 
 ```bash
-ddev add-on get ./ddev-playwright
+ddev add-on get ~/proyectos/ddev/ddev-playwright
 ddev restart   # rebuilds the web image so the browsers are baked in
 ```
+
+> This add-on currently lives only as a local git repo. Once it's pushed to a
+> shared remote, swap the path above for that URL so other machines/teammates
+> can install it too.
 
 ## What it adds
 
