@@ -1,0 +1,21 @@
+name: playwright
+
+# Requires a DDEV version that supports add-ons and web_extra_exposed_ports.
+ddev_version_constraint: '>= v1.23.0'
+
+# Files copied into the project's .ddev/ directory (structure is preserved).
+project_files:
+  - web-build/Dockerfile.playwright
+  - web-build/playwright-version.txt
+  - commands/web/playwright
+  - commands/web/playwright-report
+  - commands/web/playwright-update-snapshots
+  - commands/web/playwright-a11y-summary
+  - config.playwright.yaml
+
+post_install_actions:
+  - |
+    echo "Playwright add-on installed."
+    echo "Rebuild the web image so the browsers are baked in:  ddev restart"
+    echo "Then run tests with:  ddev playwright"
+    echo "And view the report with:  ddev playwright-report"

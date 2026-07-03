@@ -1,0 +1,20 @@
+#ddev-generated
+# Bake Playwright browsers and their system dependencies into the web image.
+#
+# The version comes from the PLAYWRIGHT_VERSION build ARG. Its default is read
+# from playwright-version.txt (shipped next to this Dockerfile), so the version
+# lives in one editable config file. Keep it in sync with @playwright/test in
+# the Playwright project's package.json. You can also override it at build time:
+#   docker build --build-arg PLAYWRIGHT_VERSION=1.61.0 ...
+ARG PLAYWRIGHT_VERSION=""
+
+# Browsers live in a fixed, image-wide location that the test runner reads via
+# this env var, so no per-user install is needed at runtime.
+ENV PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
+
+COPY playwright-version.txt /tmp/playwright-version.txt
+RUN PW_VERSION="${PLAYWRIGHT_VERSION:-$(tr -d '[:space:]' < /tmp/playwright-version.txt)}" \
+    && echo "Installing Playwright ${PW_VERSION} browsers…" \
+    && npx -y "playwright@${PW_VERSION}" install --with-deps chromium firefox \
+    && chmod -R a+rX /ms-playwright \
+    && rm -f /tmp/playwright-version.txt

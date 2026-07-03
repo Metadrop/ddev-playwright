@@ -1,0 +1,16 @@
+#!/bin/bash
+
+#ddev-generated
+## Description: Serve the Playwright HTML report from the web container
+## Usage: playwright-report [show-report arguments]
+## Example: "ddev playwright-report"
+
+set -e
+
+cd "/var/www/html/${PLAYWRIGHT_TEST_DIR:-tests/playwright}"
+
+echo "Open the Playwright report in your browser at:  https://${DDEV_HOSTNAME}:9323"
+echo "Press Ctrl+C to stop the report server."
+
+# Bind to all interfaces and a fixed port so DDEV's router can expose it.
+npx playwright show-report --host 0.0.0.0 --port 9323 "$@"

@@ -1,0 +1,8 @@
+#ddev-generated
+# Expose the Playwright HTML report server (started by `ddev playwright-report`)
+# through DDEV's router, so it can be opened at https://<project>.ddev.site:9323
+web_extra_exposed_ports:
+  - name: playwright-report
+    container_port: 9323
+    http_port: 9322
+    https_port: 9323
