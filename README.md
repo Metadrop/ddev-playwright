@@ -1,3 +1,8 @@
+[![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
+[![tests](https://github.com/Metadrop/ddev-playwright/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/Metadrop/ddev-playwright/actions/workflows/tests.yml?query=branch%3Amain)
+[![last commit](https://img.shields.io/github/last-commit/Metadrop/ddev-playwright)](https://github.com/Metadrop/ddev-playwright/commits)
+[![release](https://img.shields.io/github/v/release/Metadrop/ddev-playwright)](https://github.com/Metadrop/ddev-playwright/releases/latest)
+
 # DDEV Playwright add-on
 
 Bakes Playwright browsers and their system dependencies into the DDEV web image
@@ -8,13 +13,9 @@ and adds commands to run the tests and view the HTML report.
 From the target project's root:
 
 ```bash
-ddev add-on get ~/proyectos/ddev/ddev-playwright
+ddev add-on get Metadrop/ddev-playwright
 ddev restart   # rebuilds the web image so the browsers are baked in
 ```
-
-> This add-on currently lives only as a local git repo. Once it's pushed to a
-> shared remote, swap the path above for that URL so other machines/teammates
-> can install it too.
 
 ## What it adds
 
@@ -82,3 +83,13 @@ from `.ddev/web-build/playwright-version.txt`. Keep it in sync with
 ddev add-on remove playwright
 ddev restart
 ```
+
+## Contributing
+
+Tests run automatically on every push via [GitHub Actions](.github/workflows/tests.yml).
+See [tests/test.bats](tests/test.bats) to run them locally, and
+[README_DEBUG.md](README_DEBUG.md) for how to debug a failing CI run interactively.
+
+## Credits
+
+**Contributed and maintained by [@Metadrop](https://github.com/Metadrop)**
